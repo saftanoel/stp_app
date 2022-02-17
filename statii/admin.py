@@ -7,8 +7,8 @@ from django.contrib import admin
 from .models import Statie
 
 
-class StatiiAdmin(admin.ModelAdmin):
+class StatieAdmin(admin.ModelAdmin):
     list_display = ["nume", "long", "lat"]
 
 
-admin.site.register(Statie)
+admin.site.register(Statie, StatieAdmin)
