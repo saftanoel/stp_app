@@ -2,7 +2,6 @@ import json
 import requests
 import random
 
-
 from django.core.management.base import BaseCommand, CommandError
 from statii.models import Statie
 
@@ -12,35 +11,28 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         cookies = {
-            "JSESSIONID": "6C4B287590153048877F503720AF9696",
+            "JSESSIONID": "5F3F41E97A369B4E659985052E3DF015	",
             "ROUTEID": ".1"
         }
 
-        r = requests.get("https://avl-albaiulia.radcom.ro/avl-ab/monitor/vehicleLinearMap/getPanels", cookies=cookies)
-        print(r.status_code)
+      #   response = requests.get("https://avl-albaiulia.radcom.ro/avl-ab/monitor/vehicleLinearMap/getPanels",
+      #                           cookies=cookies)
+      #
+      #   json_obj = response.json()
+      #
+      #   for station in json_obj['Routes'][0]['RouteStations']:
+      #      # print(id_statie)
+      #      # print(station["StationName"])
+      #       #Statie.objects.create(nume=station["StationName"], StatieID=station["StationId"], long=0, lat=0)
 
-        json_obj = r.json()
+        response = requests.get("https://avl-albaiulia.radcom.ro/avl-ab/monitor/vehicleVectorialMap/getVehiclesGPRS?isG"
+                                "prsConnected=-1&inTime=-1&vehicleTypeId=-1&vehicleId=-1&vehicleCode=&currentFilter=view"
+                                "_routes&vehicleModelId=-1&startDate=24-02-2022+00:00:00&endDate=24-02-2022+23:59:59&sel"
+                                "ectedRoutesForView=,7&selectPostionRoutesForView=&vehicleHistoryId=0", cookies=cookies)
+        print(response.status_code)
+        json_obj = response.json()
 
-        for element in json_obj['Routes']:
-            for statie in element['RouteStations']:
-                Statie.objects.create(nume=statie["StationName"], long=random.randint(0, 100), lat=random.randint(0,100))
-                print(statie["StationName"])
+        for section in json_obj['Rute'][0]['Sections']:
+            statie = section['startStation']
+            Statie.objects.create(nume=statie["name"], StatieID=statie["id"], long=statie['lon'], lat=statie['lat'])
 
-    # def handle(self, *args, **options):
-    #     cookies = {
-    #         "JSESSIONID": "6C4B287590153048877F503720AF9696",
-    #         "ROUTEID": ".1"
-    #     }
-    #
-    #     response = requests.get("https://avl-albaiulia.radcom.ro/avl-ab/monitor/vehicleVectorialMap/getVehiclesGPRS"
-    #                             "?isGprsConnected=-1&inTime=-1&vehicleTypeId=-1&vehicleId=-1&vehicleCode"
-    #                             "=&currentFilter=view_routes&vehicleModelId=-1&startDate=07-03-2022+00:00:00&endDate"
-    #                             "=07-03-2022+23:59:59&selectedRoutesForView=,"
-    #                             "7&selectPostionRoutesForView=&vehicleHistoryId=0", cookies=cookies)
-    #     print(response.status_code)
-    #
-    #     json_obj2 = response.json()
-    #
-    #     for i in json_obj2['Rute']:
-    #         for statie2 in i['startStation']:
-    #             print(statie2["lat"], " ", statie2["lon"])

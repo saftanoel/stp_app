@@ -8,7 +8,7 @@ from .models import Statie
 
 
 class StatieAdmin(admin.ModelAdmin):
-    list_display = ["nume", "long", "lat"]
+    list_display = ["nume", "StatieID", "long", "lat"]
 
 
 admin.site.register(Statie, StatieAdmin)

@@ -29,7 +29,7 @@
     accessToken: 'pk.eyJ1Ijoic2FmdGFub2VsIiwiYSI6ImNrenI5ZjN1NTBmOXgycHBrb2RrMGc0dXEifQ.B3ZY98Qzv-y1vQwohAih_g'
 }).addTo(map);
 {% for statie in object_list %}
-L.marker([{{ statie.long }}, {{statie.lat }}], {"title": "{{ statie.nume }}"}).addTo(map);
+L.marker([{{ statie.lat }}, {{statie.long }}], {"title": "{{ statie.nume }}"}).addTo(map);
 {% endfor %}
 </script>
 </html>
