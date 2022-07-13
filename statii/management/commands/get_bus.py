@@ -3,7 +3,7 @@ import requests
 import random
 
 from django.core.management.base import BaseCommand, CommandError
-from statii.models import Statie
+from statii.models import Statie, Autobuz
 
 
 class Command(BaseCommand):
@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         cookies = {
-            "JSESSIONID": "E22F7BB1E2F4B548EC79101463098990",
+            "JSESSIONID": "BC74194ADAF8D8C435381C1F29B392AE",
             "ROUTEID": ".2"
         }
 
@@ -33,6 +33,11 @@ class Command(BaseCommand):
 
         for element in json_obj["Vehicles"]:
             autobuz = element["Latitudine"]
-            print(autobuz)
-            print(" ")
-            print(element["Longitudine"])
+            Autobuz.objects.create(nrInm=element["NrInmat"], idBus=element["IdVehicul"], long=element["Longitudine"], lat=element["Latitudine"])
+            #print(element["Latitudine"])
+            #print(" ")
+            #print(element["Longitudine"])
+            #print(" ")
+            #print(element["IdVehicul"])
+            #print(" ")
+            #print(element["NrInmat"])

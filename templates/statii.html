@@ -28,8 +28,20 @@
     zoomOffset: -1,
     accessToken: 'pk.eyJ1Ijoic2FmdGFub2VsIiwiYSI6ImNrenI5ZjN1NTBmOXgycHBrb2RrMGc0dXEifQ.B3ZY98Qzv-y1vQwohAih_g'
 }).addTo(map);
+var busIcon = L.icon({
+    iconUrl: '/static/bus.png',
+
+    iconSize:     [31, 49], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+}, );
+
 {% for statie in object_list %}
 L.marker([{{ statie.lat }}, {{statie.long }}], {"title": "{{ statie.nume }}"}).addTo(map);
+{% endfor %}
+
+{% for autobuz in autobuze %}
+L.marker([{{ autobuz.lat }}, {{autobuz.long }}], {"title": "{{ autobuz.nrInm }}", icon: busIcon}).addTo(map);
 {% endfor %}
 </script>
 </html>
