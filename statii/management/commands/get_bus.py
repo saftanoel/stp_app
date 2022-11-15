@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
             cookies = {
-                "JSESSIONID": "87EF754FBC652D68B39664F8B343E133",
+                "JSESSIONID": "C01389912E60C3E621BA3ECAD11BE893",
                 "ROUTEID": ".1"
             }
 

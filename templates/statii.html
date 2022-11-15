@@ -40,8 +40,19 @@ var busIcon = L.icon({
 L.marker([{{ statie.lat }}, {{statie.long }}], {"title": "{{ statie.nume }}"}).addTo(map);
 {% endfor %}
 
+
+function get_autobuz(){
 {% for autobuz in autobuze %}
 L.marker([{{ autobuz.lat }}, {{autobuz.long }}], {"title": "{{ autobuz.nrInm }}", icon: busIcon}).addTo(map);
 {% endfor %}
+}
+get_autobuz()
+setInterval(get_autobuz, 3000);
+
+function refresh_map(){
+tileLayer.redraw()
+}
+refresh_map()
+setInterval(refresh_map, 3000)
 </script>
 </html>
