@@ -46,13 +46,12 @@ function get_autobuz(){
 L.marker([{{ autobuz.lat }}, {{autobuz.long }}], {"title": "{{ autobuz.nrInm }}", icon: busIcon}).addTo(map);
 {% endfor %}
 }
-get_autobuz()
-setInterval(get_autobuz, 3000);
 
-function refresh_map(){
-tileLayer.redraw()
-}
-refresh_map()
-setInterval(refresh_map, 3000)
+
+var intervalID = window.setInterval(function(){
+    get_autobuz()
+}, 1000);
+
+
 </script>
 </html>

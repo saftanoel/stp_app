@@ -13,8 +13,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
             cookies = {
-                "JSESSIONID": "C01389912E60C3E621BA3ECAD11BE893",
-                "ROUTEID": ".1"
+                "JSESSIONID": "0FC19C31A6D5C7AD3159B1A566CF24E3",
+                "ROUTEID": ".2"
             }
 
             url = "https://avl-albaiulia.radcom.ro/avl-ab/monitor/vehicleVectorialMap/getVehiclesGPRS?isGprsConnected=-1&inTime=-1&vehicleTypeId=-1&vehicleId=-1&vehicleCode=&currentFilter=view_current_positions&vehicleModelId=-1&startDate=22-06-2022+00%3A00%3A00&endDate=22-06-2022+23%3A59%3A59&selectedRoutesForView=&selectPostionRoutesForView=7&vehicleHistoryId=0"
@@ -39,7 +39,7 @@ class Command(BaseCommand):
                 # print(" ")
                 # print(element["NrInmat"])
                 print(autobuz)
-                time.sleep(3)
+                time.sleep(5)
 
 
 
