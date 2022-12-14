@@ -41,16 +41,22 @@ L.marker([{{ statie.lat }}, {{statie.long }}], {"title": "{{ statie.nume }}"}).a
 {% endfor %}
 
 
-function get_autobuz(){
+
+<!--var intervalID = window.setInterval(function(){-->
+<!--    get_autobuz()-->
+<!--    L.marker.clearLayers();-->
+<!--}, 1000);-->
+
+var intervalID = window.setInterval(function(){
+
 {% for autobuz in autobuze %}
 L.marker([{{ autobuz.lat }}, {{autobuz.long }}], {"title": "{{ autobuz.nrInm }}", icon: busIcon}).addTo(map);
 {% endfor %}
-}
-
+}, 1000);
 
 var intervalID = window.setInterval(function(){
-    get_autobuz()
-}, 1000);
+L.marker.clearLayers();
+}, 999);
 
 
 </script>

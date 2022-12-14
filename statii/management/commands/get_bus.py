@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
             cookies = {
-                "JSESSIONID": "0FC19C31A6D5C7AD3159B1A566CF24E3",
+                "JSESSIONID": "59A5517CF1F113F732E5529CFC10A971",
                 "ROUTEID": ".2"
             }
 
@@ -39,7 +39,7 @@ class Command(BaseCommand):
                 # print(" ")
                 # print(element["NrInmat"])
                 print(autobuz)
-                time.sleep(5)
+                time.sleep(10)
 
 
 
